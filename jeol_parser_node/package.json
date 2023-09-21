@@ -1,6 +1,6 @@
 {
   "name": "@kastakin/jeol_parser",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "This project was bootstrapped by [create-neon](https://www.npmjs.com/package/create-neon).",
   "main": "dist/index.js",
   "type": "module",
