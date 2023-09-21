@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   create-release:
-    name: Create Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -129,7 +128,6 @@ jobs:
           overwrite: true
 
   publish_pypi:
-    name: Release
     runs-on: ubuntu-latest
     needs: [build-python-linux, build-python-windows, build-python-macos]
     permissions:
