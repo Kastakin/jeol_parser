@@ -261,9 +261,11 @@ jobs:
         # add an install script in package.json so users who `npm i` this package
         # will trigger the node-pre-gyp to pull the os and arch specific binary.
         run: python3 -c "import os; import json; p = json.load(open('package.json')); p['scripts']['install'] = 'node-pre-gyp install'; json.dump(p, open('package.json', 'w'), indent=2, ensure_ascii=False);"
+
       # - name: Compile for esm and commonjs
       #   working-directory: ./jeol_parser_node
       #   run: npm run release-js
+
       - name: Publish to npm
         working-directory: ./jeol_parser_node
         # `--access public` is used to publish to my account's scope.
@@ -277,11 +279,8 @@ jobs:
     needs: [publish_pypi, publish_npm]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Rollback
-        uses: author/action-rollback@stable
+      - uses: dev-drprasad/delete-tag-and-release@v1.0.1 # PRERELEASE is v1.0 and can also be used to test and give us feedback
         with:
-          tag: ${{ github.ref_name }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ github.ref_name }} #(required) tag name to delete
+          github_token: ${{ secrets.GITHUB_TOKEN }} # (required) a GitHub token with write access to the repo that needs to be modified
+          delete_release: true #(optional) default: true
