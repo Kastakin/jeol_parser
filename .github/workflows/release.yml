@@ -270,7 +270,7 @@ jobs:
 
   rollback-release:
     name: Rollback
-    if: ${{ failure() }}
+    if: ${{ failure() || cancelled() }}
     needs: [publish_pypi, publish_npm]
     runs-on: ubuntu-latest
     steps:
