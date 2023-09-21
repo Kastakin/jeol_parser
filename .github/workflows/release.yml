@@ -6,7 +6,7 @@ on:
       - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   create-release:
@@ -29,6 +29,7 @@ jobs:
 
   build-python-linux:
     name: nodejs-${{ matrix.version }}-${{ matrix.target }}-linux
+    needs: [create-release]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -62,6 +63,7 @@ jobs:
 
   build-python-windows:
     name: nodejs-${{ matrix.version }}-${{ matrix.target }}-windows
+    needs: [create-release]
     runs-on: windows-latest
     strategy:
       matrix:
@@ -95,6 +97,7 @@ jobs:
 
   build-python-macos:
     name: nodejs-${{ matrix.version }}-${{ matrix.target }}-macos
+    needs: [create-release]
     runs-on: macos-latest
     strategy:
       matrix:
