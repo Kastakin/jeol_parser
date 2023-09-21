@@ -261,9 +261,9 @@ jobs:
         # add an install script in package.json so users who `npm i` this package
         # will trigger the node-pre-gyp to pull the os and arch specific binary.
         run: python3 -c "import os; import json; p = json.load(open('package.json')); p['scripts']['install'] = 'node-pre-gyp install'; json.dump(p, open('package.json', 'w'), indent=2, ensure_ascii=False);"
-      - name: Compile for esm and commonjs
-        working-directory: ./jeol_parser_node
-        run: npm run release-js
+      # - name: Compile for esm and commonjs
+      #   working-directory: ./jeol_parser_node
+      #   run: npm run release-js
       - name: Publish to npm
         working-directory: ./jeol_parser_node
         # `--access public` is used to publish to my account's scope.
