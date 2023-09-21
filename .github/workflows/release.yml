@@ -27,18 +27,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-python-linux:
-    name: nodejs-${{ matrix.version }}-${{ matrix.target }}-linux
+    name: python-${{ matrix.target }}-linux
     needs: [create-release]
     runs-on: ubuntu-latest
     strategy:
       matrix:
         target: [x86_64, x86, aarch64, armv7]
-        version: ["3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.version }}
+          python-version: "3.10"
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -62,18 +61,17 @@ jobs:
           file_glob: true
 
   build-python-windows:
-    name: nodejs-${{ matrix.version }}-${{ matrix.target }}-windows
+    name: python-${{ matrix.target }}-windows
     needs: [create-release]
     runs-on: windows-latest
     strategy:
       matrix:
         target: [x64, x86]
-        version: ["3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.version }}
+          python-version: "3.10"
           architecture: ${{ matrix.target }}
       - name: Build wheels
         uses: PyO3/maturin-action@v1
@@ -97,18 +95,17 @@ jobs:
           file_glob: true
 
   build-python-macos:
-    name: nodejs-${{ matrix.version }}-${{ matrix.target }}-macos
+    name: python-${{ matrix.target }}-macos
     needs: [create-release]
     runs-on: macos-latest
     strategy:
       matrix:
         target: [x86_64, aarch64]
-        version: ["3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.version }}
+          python-version: "3.10"
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
