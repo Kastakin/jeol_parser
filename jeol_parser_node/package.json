@@ -25,14 +25,14 @@
     "@types/node": "^20.5.9",
     "cargo-cp-artifact": "^0.1"
   },
-  "dependencies": {
-    "@mapbox/node-pre-gyp": "^1.0.8"
-  },
   "binary": {
     "module_name": "jeol_parser",
     "module_path": "./native",
     "host": "https://github.com/kastakin/jeol_parser/releases/download/",
     "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}-{libc}.tar.gz",
     "remote_path": "v{version}"
+  },
+  "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.11"
   }
 }
