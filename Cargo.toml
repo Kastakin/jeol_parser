@@ -1,0 +1,9 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "jeol_parser_core",
+    "jeol_parser_node",
+    "jeol_parser_cli",
+    "jeol_parser_python",
+]

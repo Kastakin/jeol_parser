@@ -1,0 +1,38 @@
+{
+  "name": "@kastakin/jeol_parser",
+  "version": "0.1.0",
+  "description": "This project was bootstrapped by [create-neon](https://www.npmjs.com/package/create-neon).",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "cargo-cp-artifact -ac jeol_parser_node ./jeol_parser.node -- cargo build --message-format=json-render-diagnostics",
+    "build-debug": "npm run build --",
+    "build-release": "npm run build -- --release",
+    "release-native": "npm run build-release && rm -rf native && mkdir native && mv ./jeol_parser.node ./native/jeol_parser.node",
+    "test": "npm run release-native && dev=true node --loader ts-node/esm --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand"
+  },
+  "author": "",
+  "license": "MIT",
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "cargo-cp-artifact": "^0.1"
+  },
+  "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.8"
+  },
+  "binary": {
+    "module_name": "jeol_parser",
+    "module_path": "./native",
+    "host": "https://github.com/kastakin/jeol_parser/releases/download/",
+    "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}-{libc}.tar.gz",
+    "remote_path": "v{version}"
+  }
+}

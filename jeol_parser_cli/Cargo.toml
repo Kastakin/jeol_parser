@@ -1,0 +1,13 @@
+[package]
+name = "jeol_parser_cli"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.75"
+clap = { version = "4.4.2", features = ["derive"] }
+jeol_parser_core = { path = "../jeol_parser_core" }
+serde_json = "1.0.106"

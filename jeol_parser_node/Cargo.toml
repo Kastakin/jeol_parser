@@ -1,0 +1,20 @@
+[package]
+name = "jeol_parser_node"
+version = "0.1.0"
+license = "MIT"
+edition = "2018"
+exclude = ["index.node"]
+
+[lib]
+crate-type = ["cdylib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+jeol_parser_core = { path = "../jeol_parser_core" }
+neon-serde3 = "0.10.0"
+
+[dependencies.neon]
+version = "0.10"
+default-features = false
+features = ["napi-6"]
